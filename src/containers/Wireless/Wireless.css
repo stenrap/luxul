@@ -1,0 +1,19 @@
+.wirelessPage {
+}
+
+.radioConfiguration {
+    width: 300px;
+    border: 1px solid black;
+}
+
+.profileForm {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    text-align: left;
+    border: 1px solid black;
+}
+
+.profileTable {
+    border: 1px solid black;
+}
