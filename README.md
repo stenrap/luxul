@@ -85,3 +85,13 @@ Next, implement a very basic responsive layout. The Radio Configuration and Crea
 Don't worry too much about the exact styling details or the fact that the table columns get squished on narrow screens. We're just looking for a basic layout here.
 
 For this task, you can use any tricks or techniques you like, although you should note that we prefer the simplest and most modern implementation when possible. Backward compatibility is not a concern, so as long as it works in Chrome, Firefox, or Edge, it works for this example.
+
+
+Project Notes
+----
+
+// TODO and WYLO 0 .... Tell them about the dependency issues that required upgrading to material-ui 0.16.4 and react-tap-event-plugin 2.0.1
+
+// TODO and WYLO 1 .... Add a sub-section labeled "Unit Tests" here, then tell them how to install mocha and run unit tests (once you have them working).
+
+// TODO and WYLO 2 .... Tell them how to run the webpack dev server: node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js
