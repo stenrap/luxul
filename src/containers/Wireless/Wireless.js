@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import RadioConfiguration from './RadioConfiguration';
 import ProfileForm from './ProfileForm';
 import ProfileTable from './ProfileTable';
-import { setRadioEnabled, setRadioChannel, addProfile, deleteProfile } from '../../redux/wireless';
+import { setRadioEnabled, setRadioChannelWidth, setRadioChannel, setSecondaryRadioChannel, addProfile, deleteProfile } from '../../redux/wireless';
 
 class Wireless extends React.Component {
     render() {
@@ -15,7 +15,9 @@ class Wireless extends React.Component {
                 <RadioConfiguration
                     radios={radios}
                     handleRadioToggle={ (radio, enabled) => dispatch(setRadioEnabled(radio, enabled)) }
+                    handleRadioChannelWidth={ (radio, width) => dispatch(setRadioChannelWidth(radio, width)) }
                     handleRadioChannel={ (radio, channel) => dispatch(setRadioChannel(radio, channel)) }
+                    handleSecondaryRadioChannel={ (radio, channel) => dispatch(setSecondaryRadioChannel(radio, channel)) }
                 />
                 <ProfileForm
                     onSubmit={ (profile) => dispatch(addProfile(profile)) }

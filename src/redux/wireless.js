@@ -1,5 +1,7 @@
 const SET_RADIO_ENABLED = 'wireless/SET_RADIO_ENABLED';
+const SET_RADIO_CHANNEL_WIDTH = 'wireless/SET_RADIO_CHANNEL_WIDTH';
 const SET_RADIO_CHANNEL = 'wireless/SET_RADIO_CHANNEL';
+const SET_SECONDARY_RADIO_CHANNEL = 'wireless/SET_SECONDARY_RADIO_CHANNEL';
 
 const ADD_PROFILE = 'wireless/ADD_PROFILE';
 const DELETE_PROFILE = 'wireless/DELETE_PROFILE';
@@ -9,6 +11,12 @@ const initialState = {
         "2.4GHz": {
             enabled: true,
             channel: 6,
+            width: '20 MHz',
+            primaryLabel: '2.4 GHz Channel',
+            hideSecondary: true,
+            secondaryChannel: 'Above',
+            aboveEnabled: true,
+            belowEnabled: true
         },
         "5GHz": {
             enabled: true,
@@ -28,20 +36,6 @@ const initialState = {
 
 export default function wirelessReducer(state = initialState, action = {}) {
     switch (action.type) {
-        case SET_RADIO_CHANNEL:
-        {
-            const { radio, channel } = action;
-            return {
-                ...state,
-                radios: {
-                    ...state.radios,
-                    [radio]: {
-                        ...state.radios[radio],
-                        channel: channel
-                    }
-                }
-            }
-        }
         case SET_RADIO_ENABLED:
         {
             const { radio, enabled } = action;
@@ -52,6 +46,60 @@ export default function wirelessReducer(state = initialState, action = {}) {
                     [radio]: {
                         ...state.radios[radio],
                         enabled: enabled
+                    }
+                }
+            }
+        }
+        case SET_RADIO_CHANNEL_WIDTH:
+        {
+            const { radio, width } = action;
+            const hideSecondary = width === '20 MHz';
+            return {
+                ...state,
+                radios: {
+                    ...state.radios,
+                    [radio]: {
+                        ...state.radios[radio],
+                        primaryLabel: hideSecondary ? '2.4 GHz Channel' : 'Primary 2.4 GHz Channel',
+                        hideSecondary: hideSecondary,
+                        width: width
+                    }
+                }
+            }
+        }
+        case SET_RADIO_CHANNEL:
+        {
+            const { radio, channel } = action;
+            let secondaryChannel = state.radios['2.4GHz'].secondaryChannel;
+            if (channel < 5) {
+                secondaryChannel = 'Above';
+            } else if (channel > 7) {
+                secondaryChannel = 'Below';
+            }
+            return {
+                ...state,
+                radios: {
+                    ...state.radios,
+                    [radio]: {
+                        ...state.radios[radio],
+                        channel: channel,
+                        secondaryChannel: secondaryChannel,
+                        aboveEnabled: channel < 8,
+                        belowEnabled: channel > 4
+                    }
+                }
+            }
+        }
+        case SET_SECONDARY_RADIO_CHANNEL:
+        {
+            const { radio, secondaryChannel } = action;
+            return {
+                ...state,
+                radios: {
+                    ...state.radios,
+                    [radio]: {
+                        ...state.radios[radio],
+                        secondaryChannel: secondaryChannel
                     }
                 }
             }
@@ -88,11 +136,27 @@ export function setRadioEnabled(radio, enabled) {
     }
 }
 
+export function setRadioChannelWidth(radio, width) {
+    return {
+        type: SET_RADIO_CHANNEL_WIDTH,
+        radio: radio,
+        width: width,
+    }
+}
+
 export function setRadioChannel(radio, channel) {
     return {
         type: SET_RADIO_CHANNEL,
         radio: radio,
         channel: channel,
+    }
+}
+
+export function setSecondaryRadioChannel(radio, secondaryChannel) {
+    return {
+        type: SET_SECONDARY_RADIO_CHANNEL,
+        radio: radio,
+        secondaryChannel: secondaryChannel,
     }
 }
 
