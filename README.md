@@ -17,81 +17,108 @@ To complete the exercise, implement the following four feature requests. Feel fr
 
 
 1. Add channel width settings to the Radio Configuration interface.
-
-The Radio Configuration panel allows for channel selection, but our users also want to set the channel width. Your job is to extend the app to support channel width selection for each radio.
-
-For the 2.4GHz radio, the options for channel width are "20 MHz" or "20/40 MHz Auto".
-For the 5GHz radio, the options for channel width are "20 MHz", "20/40 MHz Auto", or "20/40/80 MHz Auto"
-
-But there's a catch: Not all combinations of channel widths and channel settings are valid. We need the interface to disallow invalid combinations of channel width and channels. If the user changes the settings in a way that would produce an invalid state, your interface needs to gently coerce the other settings in to a valid configuration in a way that makes sense to the user.
-
-For the 2.4GHz Radio, all channels (1-11) are valid for both the "20 MHz" and "20/40 MHz Auto" settings. However, in "20/40 MHz Auto" mode, the user needs to choose whether the secondary 20 MHz channel is above or below the primary channel. For the ugly details, see https://en.wikipedia.org/wiki/IEEE_802.11n-2009#40.C2.A0MHz_channels_in_2.4.C2.A0GHz , but for the purposes of this exercise, this table shows valid combinations:
-
-| Primary | Above?  | Below?  |
-| ------- | ------- | ------- |
-| 1       | Valid   | Invalid |
-| 2       | Valid   | Invalid |
-| 3       | Valid   | Invalid |
-| 4       | Valid   | Invalid |
-| 5       | Valid   | Valid   |
-| 6       | Valid   | Valid   |
-| 7       | Valid   | Valid   |
-| 8       | Invalid | Valid   |
-| 9       | Invalid | Valid   |
-| 10      | Invalid | Valid   |
-| 11      | Invalid | Valid   |
-
-
-For the 5GHz Radio, the list of valid channels depends on the channel width setting. Refer to the following table for valid channels for each setting:
-
-| Channel | 20 MHz | 20/40 MHz Auto | 20/40/80 MHz Auto |
-|---------|--------|----------------|-------------------|
-| 36      | Valid  | Valid          | Invalid           |
-| 40      | Valid  | Valid          | Valid             |
-| 44      | Valid  | Valid          | Invalid           |
-| 48      | Valid  | Valid          | Invalid           |
-| 149     | Valid  | Valid          | Invalid           |
-| 153     | Valid  | Valid          | Valid             |
-| 157     | Valid  | Valid          | Invalid           |
-| 161     | Valid  | Valid          | Invalid           |
-| 165     | Valid  | Invalid        | Invalid           |
-
-For an example of how this works, see: http://luxul.com/wp-content/tools/XWR-1750/settings.php (Note: There is a bug on that page that has some valid 5GHz channels disabled in certain cases, but refer to the table above for the correct values.)
-
-
+    
+    <br/>
+    The Radio Configuration panel allows for channel selection, but our users also want to set the channel width. Your job is to extend the app to support channel width selection for each radio.
+    
+    For the 2.4GHz radio, the options for channel width are "20 MHz" or "20/40 MHz Auto".
+    For the 5GHz radio, the options for channel width are "20 MHz", "20/40 MHz Auto", or "20/40/80 MHz Auto"
+    
+    But there's a catch: Not all combinations of channel widths and channel settings are valid. We need the interface to disallow invalid combinations of channel width and channels. If the user changes the settings in a way that would produce an invalid state, your interface needs to gently coerce the other settings in to a valid configuration in a way that makes sense to the user.
+    
+    For the 2.4GHz Radio, all channels (1-11) are valid for both the "20 MHz" and "20/40 MHz Auto" settings. However, in "20/40 MHz Auto" mode, the user needs to choose whether the secondary 20 MHz channel is above or below the primary channel. For the ugly details, see https://en.wikipedia.org/wiki/IEEE_802.11n-2009#40.C2.A0MHz_channels_in_2.4.C2.A0GHz , but for the purposes of this exercise, this table shows valid combinations:
+    
+    <br/>
+    
+    | Primary | Above?  | Below?  |
+    | ------- | ------- | ------- |
+    | 1       | Valid   | Invalid |
+    | 2       | Valid   | Invalid |
+    | 3       | Valid   | Invalid |
+    | 4       | Valid   | Invalid |
+    | 5       | Valid   | Valid   |
+    | 6       | Valid   | Valid   |
+    | 7       | Valid   | Valid   |
+    | 8       | Invalid | Valid   |
+    | 9       | Invalid | Valid   |
+    | 10      | Invalid | Valid   |
+    | 11      | Invalid | Valid   |
+    
+    
+    For the 5GHz Radio, the list of valid channels depends on the channel width setting. Refer to the following table for valid channels for each setting:
+    
+    <br/>
+    
+    | Channel | 20 MHz | 20/40 MHz Auto | 20/40/80 MHz Auto |
+    |---------|--------|----------------|-------------------|
+    | 36      | Valid  | Valid          | Invalid           |
+    | 40      | Valid  | Valid          | Valid             |
+    | 44      | Valid  | Valid          | Invalid           |
+    | 48      | Valid  | Valid          | Invalid           |
+    | 149     | Valid  | Valid          | Invalid           |
+    | 153     | Valid  | Valid          | Valid             |
+    | 157     | Valid  | Valid          | Invalid           |
+    | 161     | Valid  | Valid          | Invalid           |
+    | 165     | Valid  | Invalid        | Invalid           |
+    
+    For an example of how this works, see: http://luxul.com/wp-content/tools/XWR-1750/settings.php (Note: There is a bug on that page that has some valid 5GHz channels disabled in certain cases, but refer to the table above for the correct values.)
+    
+    
 
 2. Disable channel controls when the radio is disabled.
-
-When a radio is disabled, all of the channel selection and channel width fields for that radio should be disabled (grayed out). The values and fields can remain, but the used shouldn't be able to modify them.
-
-
+    
+    <br/>
+    When a radio is disabled, all of the channel selection and channel width fields for that radio should be disabled (grayed out). The values and fields can remain, but the used shouldn't be able to modify them.
+    
+    
 
 3. Profile delete confirmation dialog.
-
-Pressing the delete button on a profile should present a confirmation dialog to the user with a warning message and two buttons: Delete and Cancel. Pressing Delete will confirm the operation and delete the profile. Pressing Cancel will dismiss the dialog without deleting the profile.
-
-Use the Dialog component from the Material-UI library to implement the dialog. ( http://www.material-ui.com/#/components/dialog )
-
-
+    
+    <br/>
+    Pressing the delete button on a profile should present a confirmation dialog to the user with a warning message and two buttons: Delete and Cancel. Pressing Delete will confirm the operation and delete the profile. Pressing Cancel will dismiss the dialog without deleting the profile.
+    
+    Use the Dialog component from the Material-UI library to implement the dialog. ( http://www.material-ui.com/#/components/dialog )
+    
+    
 
 4. Styling
-
-This app is ugly, mostly because I styled it myself. You can do better, though.
-
-The three main components (Radio Configuration, Create Profile, Profile Table) have been outlined with a simple black border for development. Your job is to put each of them inside of a Material-UI Paper component ( http://www.material-ui.com/#/components/paper ). Assign the Paper component a zDepth of 4 to give it some depth. Use your CSS skills to space the Paper components out enough that we can appreciate those nice shadows.
-
-Next, implement a very basic responsive layout. The Radio Configuration and Create Profile components should by side-by-side and centered when space allows, but should gracefully fall back to being one on top of the other on narrow displays. See "Wide Example.png" and "Narrow Example.png" for examples of how this might look.
-
-Don't worry too much about the exact styling details or the fact that the table columns get squished on narrow screens. We're just looking for a basic layout here.
-
-For this task, you can use any tricks or techniques you like, although you should note that we prefer the simplest and most modern implementation when possible. Backward compatibility is not a concern, so as long as it works in Chrome, Firefox, or Edge, it works for this example.
+    
+    <br/>
+    This app is ugly, mostly because I styled it myself. You can do better, though.
+    
+    The three main components (Radio Configuration, Create Profile, Profile Table) have been outlined with a simple black border for development. Your job is to put each of them inside of a Material-UI Paper component ( http://www.material-ui.com/#/components/paper ). Assign the Paper component a zDepth of 4 to give it some depth. Use your CSS skills to space the Paper components out enough that we can appreciate those nice shadows.
+    
+    Next, implement a very basic responsive layout. The Radio Configuration and Create Profile components should by side-by-side and centered when space allows, but should gracefully fall back to being one on top of the other on narrow displays. See "Wide Example.png" and "Narrow Example.png" for examples of how this might look.
+    
+    Don't worry too much about the exact styling details or the fact that the table columns get squished on narrow screens. We're just looking for a basic layout here.
+    
+    For this task, you can use any tricks or techniques you like, although you should note that we prefer the simplest and most modern implementation when possible. Backward compatibility is not a concern, so as long as it works in Chrome, Firefox, or Edge, it works for this example.
 
 
 Project Notes
 ----
 
-// TODO and WYLO 0 .... Tell them about the dependency issues that required upgrading to material-ui 0.16.4 and react-tap-event-plugin 2.0.1
+### Setup
+I added the `webpack` module bundler to support the CommonJS module style used throughout the code, and the `babel` library to support ES2015 syntax.
 
-// TODO and WYLO 1 .... Add a sub-section labeled "Unit Tests" here, then tell them how to install mocha and run unit tests (once you have them working).
+_Note_: When I first downloaded the project and ran `npm install`, there was a dependency issue with the `react-tap-event-plugin` package—evidently it was referencing specific React library files, and the locations of those files has changed in the latest version of React. The solution was to upgrade to `react-tap-event-plugin 2.0.1` and `material-ui 0.16.4` (see [the issue](https://github.com/zilverline/react-tap-event-plugin/issues/87)). I'm not sure if this was an intentional part of your assignment—to see whether candidates can resolve these types of issues—but I thought you should know why I used newer versions of these packages.
 
-// TODO and WYLO 2 .... Tell them how to run the webpack dev server: node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js
+### Unit Tests
+I used the `mocha` and `chai` packages for unit tests, which are development dependencies in the project. The unit test files are located in the `test` directory; follow these steps to run the tests:
+
+1. Open a shell and change to the root directory of the project.
+1. Execute the following command:
+   
+   `./node_modules/.bin/mocha --compilers js:babel-core/register --recursive`
+
+### Development Web Server
+I used the `webpack-dev-server` package as my development web server. Follow these steps to create a build, launch the web server, and view the project in your browser:
+
+1. Open a shell and change to the root directory of the project.
+1. Create a "production" webpack build by executing this command:
+
+   `webpack -p`
+1. Start the web server by executing this command:
+
+   `./node_modules/.bin/webpack-dev-server`
+1. Launch a browser and point it to http://localhost:8080/
