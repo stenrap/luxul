@@ -1,19 +1,33 @@
 .wirelessPage {
+    margin-top: 10px;
+    text-align: center;
 }
 
-.radioConfiguration {
-    width: 300px;
-    border: 1px solid black;
+.radioConfiguration,
+.profileForm {
+    box-sizing: border-box;
+    display: inline-block;
+    margin: 10px 0;
+    padding: 16px 12px;
+    text-align: left;
+    vertical-align: top;
+    width: 90%;
 }
 
 .profileForm {
-    display: flex;
-    flex-direction: column;
-    width: 300px;
-    text-align: left;
-    border: 1px solid black;
+    margin-bottom: 20px;
 }
 
 .profileTable {
-    border: 1px solid black;
+    margin: 0 auto;
+    width: 90%;
+}
+
+@media screen and (min-width: 768px) {
+
+    .radioConfiguration,
+    .profileForm {
+        margin: 20px 10px;
+        width: 320px;
+    }
 }
