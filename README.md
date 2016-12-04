@@ -103,19 +103,24 @@ I added the `webpack` module bundler to support the CommonJS module style used t
 
 _Note_: When I first downloaded the project and ran `npm install`, there was a dependency issue with the `react-tap-event-plugin` package—evidently it was referencing specific React library files, and the locations of those files has changed in the latest version of React. The solution was to upgrade to `react-tap-event-plugin 2.0.1` and `material-ui 0.16.4` (see [the issue](https://github.com/zilverline/react-tap-event-plugin/issues/87)). I'm not sure if this was an intentional part of your assignment—to see whether candidates can resolve these types of issues—but I thought you should know why I used newer versions of these packages.
 
-### Unit Tests
-I used the `mocha` and `chai` packages for unit tests, which are development dependencies in the project. The unit test files are located in the `test` directory; follow these steps to run the tests:
+Follow these steps to install all required packages:
 
 1. Open a shell and change to the root directory of the project.
 1. Execute the following command:
+   
+   `npm install`
+
+### Unit Tests
+I used the `mocha` and `chai` packages for unit tests, which are development dependencies in the project. The unit test files are located in the `test` directory; follow these steps to run the tests:
+
+1. From the root directory of the project, execute the following command:
    
    `./node_modules/.bin/mocha --compilers js:babel-core/register --recursive`
 
 ### Development Web Server
 I used the `webpack-dev-server` package as my development web server. Follow these steps to create a build, launch the web server, and view the project in your browser:
 
-1. Open a shell and change to the root directory of the project.
-1. Create a "production" webpack build by executing this command:
+1. From the root directory of the project, create a "production" webpack build by executing this command:
 
    `webpack -p`
 1. Start the web server by executing this command:

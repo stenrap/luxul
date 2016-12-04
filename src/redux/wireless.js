@@ -20,7 +20,9 @@ const initialState = {
         },
         "5GHz": {
             enabled: true,
-            channel: 153,
+            width: '20 MHz',
+            channel: 36,
+            validChannels: [36, 40, 44, 48, 149, 153, 157, 161, 165]
         }
     },
     profiles: [
@@ -54,6 +56,19 @@ export default function wirelessReducer(state = initialState, action = {}) {
         {
             const { radio, width } = action;
             const hideSecondary = width === '20 MHz';
+            let validChannels = [36, 40, 44, 48, 149, 153, 157, 161, 165];
+            if (width === '20/40 MHz Auto') {
+                validChannels = [36, 40, 44, 48, 149, 153, 157, 161];
+            } else if (width === '20/40/80 MHz Auto') {
+                validChannels = [40, 153];
+            }
+            let channel = state.radios['2.4GHz'].channel;
+            if (radio === '5GHz') {
+                channel = state.radios['5GHz'].channel;
+                if (validChannels.findIndex((element) => element == channel) == -1) {
+                    channel = validChannels[0];
+                }
+            }
             return {
                 ...state,
                 radios: {
@@ -62,7 +77,9 @@ export default function wirelessReducer(state = initialState, action = {}) {
                         ...state.radios[radio],
                         primaryLabel: hideSecondary ? '2.4 GHz Channel' : 'Primary 2.4 GHz Channel',
                         hideSecondary: hideSecondary,
-                        width: width
+                        validChannels: validChannels,
+                        width: width,
+                        channel: channel
                     }
                 }
             }

@@ -20,6 +20,8 @@ export default class RadioConfiguration extends React.Component {
                 "5GHz": {
                     enabled: radio5Enabled,
                     channel: radio5Channel,
+                    width: radio5Width,
+                    validChannels
                 }
             },
             handleRadioToggle,
@@ -28,8 +30,6 @@ export default class RadioConfiguration extends React.Component {
             handleSecondaryRadioChannel
         } = this.props;
         
-        // TODO and WYLO .... Add the channel width SelectField for 5 GHz and implement the restrictions.
-
         return (
             <div className="radioConfiguration">
                 <h3>Radio Configuration</h3>
@@ -74,13 +74,24 @@ export default class RadioConfiguration extends React.Component {
                     onToggle={ (event, value) => handleRadioToggle("5GHz", value) }
                 />
                 <SelectField
+                    disabled={!radio5Enabled}
+                    floatingLabelText="5 GHz Channel Width"
+                    value={radio5Width}
+                    onChange={ (event, key, value) => handleRadioChannelWidth("5GHz", value) }
+                    fullWidth
+                >
+                    <MenuItem value="20 MHz" primaryText="20 MHz" />
+                    <MenuItem value="20/40 MHz Auto" primaryText="20/40 MHz Auto" />
+                    <MenuItem value="20/40/80 MHz Auto" primaryText="20/40/80 MHz Auto" />
+                </SelectField>
+                <SelectField
+                    disabled={!radio5Enabled}
                     floatingLabelText="5 GHz Channel"
                     value={radio5Channel}
                     onChange={ (event, key, value) => handleRadioChannel("5GHz", value) }
                     fullWidth
                 >
-                    <MenuItem value={40} primaryText="40" />
-                    <MenuItem value={153} primaryText="153" />
+                    {validChannels.map((x, i) => <MenuItem key={x} value={x} primaryText={x} />)}
                 </SelectField>
             </div>
         )
