@@ -8,8 +8,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Wireless from './containers/Wireless/Wireless';
 import wirelessReducer from './redux/wireless';
 
-// TODO and WYLO .... Figure out how the app is currently working, then write unit tests for feature request #1.
-
 let store = createStore(
     combineReducers({
         wireless: wirelessReducer,

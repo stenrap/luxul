@@ -115,7 +115,7 @@ I used the `mocha` and `chai` packages for unit tests, which are development dep
 
 1. From the root directory of the project, execute the following command:
    
-   `./node_modules/.bin/mocha --compilers js:babel-core/register --recursive`
+   `./node_modules/.bin/mocha --compilers js:babel-core/register`
 
 ### Development Web Server
 I used the `webpack-dev-server` package as my development web server. Follow these steps to create a build, launch the web server, and view the project in your browser:
